@@ -1,0 +1,45 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .infobox {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="infobox"><input type="checkbox" id="checkall">Check/Uncheck all Checkboxes</div>
+        <div class="infobox"><input type="checkbox" id="pizza" name="pizza" value=5>Pizza $5</div>
+        <div class="infobox"> <input type="checkbox" id="hotdog" name="hotdog" value=2>HotDog
+            $2</div>
+        <div class="infobox"><input type="checkbox" id="coke" name="coke" value=1>Coke $1</div>
+        <div class="infobox"><input type="checkbox" id="fries" name="fries" value=3>French Fries
+            $3</div>
+    </form>
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#checkall').click(function () {                      //t checks if the checkbox of id:checkall is checked
+            $("input[type='checkbox']").attr('checked', $('#checkall').is(':checked'));        //method is used for setting the attributes of the selected element(s). 
+        });
+        $('form').find(':checkbox').click(function () {
+            var amt = 0;
+            $('div').filter(':gt(0)')
+            .find(':checkbox')
+            .each(function () {
+                if ($('div:gt(0)')) {
+                    if ($(this).is(':checked'))   //method checks the selected element(s) with a selector and returns true if the any of the selected elements match with the selector; otherwise it returns false. 
+                    {
+                        amt = amt + parseInt($(this).val());
+                    }
+                }
+            });
+            $('p').remove();
+            $('<p>').insertAfter('div:eq(4)');
+            $('p').text('Your bill is $ ' + amt);
+        })
+    })
+</script>
